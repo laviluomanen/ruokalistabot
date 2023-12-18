@@ -24,7 +24,7 @@ def fetch_and_push_menu():
 
     http = HTTP()
     http.download("https://ruokalistat.seinajoki.fi/AromieMenus/FI/Default/tervetuloa/KerttuPk/Rss.aspx?Id=9973548d-c031-472f-a5fd-14e0ed0f0809&DateMode=0", overwrite=True)
-
+    
     #in case one would need whole week or next week menus
     #https://ruokalistat.seinajoki.fi/AromieMenus/FI/Default/tervetuloa/KerttuPk/Rss.aspx?Id=9973548d-c031-472f-a5fd-14e0ed0f0809&DateMode=2 next week
     #https://ruokalistat.seinajoki.fi/AromieMenus/FI/Default/tervetuloa/KerttuPk/Rss.aspx?Id=9973548d-c031-472f-a5fd-14e0ed0f0809&DateMode=1 current week
@@ -34,7 +34,7 @@ def fetch_and_push_menu():
     save_menu_locally(parsed_content)
     push_to_x(parsed_content)
 
-#
+#This is spaghetti but does the job..
 def parse_content():
     with open("Rss.aspx", "r") as file:
         for line in file:
@@ -54,12 +54,12 @@ def parse_content():
     content[0] = content[0].split("Vegaani")[0]
     return content
 
-#
+#In case I need the info later on, the contents are saved locally to daily files.
 def save_menu_locally(parsed_content):
     file_system.touch_file(f"output/{datetime.date.today()}_menu.txt")
     file_system.append_to_file(f"output/{datetime.date.today()}_menu.txt", parsed_content[0] + "\n")
 
-#
+#Push to X
 def push_to_x(parsed_content):
     page = browser.goto("https://twitter.com/i/flow/login")
     page.fill("//input[@name='text']", USER_NAME)
