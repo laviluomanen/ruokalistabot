@@ -1,7 +1,9 @@
-# Ruokalistabotti - Kertunlaakson päiväkoti
-* This bot fetches the daily lunch + snack menu of Kertunlaakso municipal day care, City of Seinäjoki.
-* Daily rss feed is parsed, saved locally and pushed to X.
-* Replace the env.json secrets with a path to your own secrets file.
+# Ruokalistabotti
+* This bot fetches the daily lunch + snack menu of a certain municipal day care unit, City of Seinäjoki.
+* Daily rss feed is parsed, saved locally and sent to a personal email address.
+* Secrets are stored in Vault.
+* The code contains a lot of commented sections. Those are placeholders myself if rpaframework supports >= 4.0 Tweepy in the future.
+* At least I wasn't able to solve the dependency conflicts.
 * One can choose another RSS link in the list of [menus](https://ruokalistat.seinajoki.fi/AromieMenus/FI/Default/tervetuloa).
 
 # Might as well leave the Robocorp minimal template readme content here
